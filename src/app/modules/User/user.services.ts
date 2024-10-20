@@ -5,17 +5,14 @@ import { User } from "../../entity/User";
 const Create_User_Service = async (data: Create_User_Type) => {
 
     const entityManager = getManager();
-    // insert data
+    // insert data to database 
     const newUser = await entityManager.insert(User, {
         name: data.name,
         age: data.age,
         email: data.email
     })
 
-
-
-
-    return {};
+    return newUser;
 }
 
 
