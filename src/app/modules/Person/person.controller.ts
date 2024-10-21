@@ -16,7 +16,7 @@ const Create_Person_Controller = Async_Catch(async (req: Request, res: Response,
 })
 
 const Udpate_Person_Controller = Async_Catch(async (req: Request, res: Response, next: NextFunction) => {
-    const result = await Person_Services.Update_Person_Service(req.body,req.params.pid);
+    const result = await Person_Services.Update_Person_Service(req.body, req.params.pid);
 
     res.status(httpStatus.OK).json({
         success: true,
@@ -25,10 +25,41 @@ const Udpate_Person_Controller = Async_Catch(async (req: Request, res: Response,
     })
 })
 
+const Delete_Person_Controller = Async_Catch(async (req: Request, res: Response, next: NextFunction) => {
+    const result = await Person_Services.Delete_Person_Service(req.params.pid);
+
+    res.status(httpStatus.OK).json({
+        success: true,
+        message: "Successfully Delete a person",
+        data: result
+    })
+})
+
+const Get_All_Person_Controller = Async_Catch(async (req: Request, res: Response, next: NextFunction) => {
+    const result = await Person_Services.Get_All_Person_Service();
+
+    res.status(httpStatus.OK).json({
+        success: true,
+        message: "Successfully Get All person",
+        data: result
+    })
+})
+
+const Get_One_Person_Controller = Async_Catch(async (req: Request, res: Response, next: NextFunction) => {
+    const result = await Person_Services.Get_One_Person_Service(req.params.pid);
+
+    res.status(httpStatus.OK).json({
+        success: true,
+        message: "Successfully Get a person",
+        data: result
+    })
+})
 
 export const Person_Controller = {
     Create_Person_Controller,
     Udpate_Person_Controller,
-
+    Delete_Person_Controller,
+    Get_All_Person_Controller,
+    Get_One_Person_Controller,
 
 }

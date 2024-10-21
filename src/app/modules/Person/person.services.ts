@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm";
+import { getRepository, Repository } from "typeorm";
 import { Person_Type } from "./person.interface";
 import { Person } from "../../entity/Person";
 
@@ -20,9 +20,31 @@ const Update_Person_Service = async (data: Partial<Person_Type>, pid: string) =>
     return result;
 }
 
+const Delete_Person_Service = async (pid: string) => {
+    const repository = getRepository(Person);
+    const result = await repository.delete({ person_id: Number(pid) });
+    return result;
+}
+
+const Get_All_Person_Service = async () => {
+
+    const repository = getRepository(Person);
+    const reuslt = await repository.find();
+    return reuslt;
+}
+
+const Get_One_Person_Service = async (pid: string) => {
+
+    const repository = getRepository(Person);
+    const result = await repository.findOne({ where: { person_id: Number(pid) } });
+
+    return result;
+}
 
 export const Person_Services = {
     Create_Person_Service,
     Update_Person_Service,
-
+    Delete_Person_Service,
+    Get_All_Person_Service,
+    Get_One_Person_Service
 }
