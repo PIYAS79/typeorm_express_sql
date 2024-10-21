@@ -15,9 +15,21 @@ const Create_User_Controller = Async_Catch(async(req:Request,res:Response,next:N
     })
 })
 
+const Update_User_Controller = Async_Catch(async(req:Request,res:Response,next:NextFunction)=>{
+
+    const result = await User_Services.Update_User_Service(req.body,req.params.uid);
+
+    res.status(httpStatus.OK).json({
+        success:true,
+        message:"Successfully Update A User",
+        data:result
+    })
+})
 
 
 export const User_Controller = {
     Create_User_Controller,
+    Update_User_Controller,
+
 
 }

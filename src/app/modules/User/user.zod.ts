@@ -14,3 +14,10 @@ export const User_Zod_Type = z.object({
     })
 })
 
+export const Update_User_Zod_Type = z.object({
+    body: z.object({
+        name: z.string().optional(),
+        age: z.number().optional(),
+        email: z.string().optional()
+    })
+})
