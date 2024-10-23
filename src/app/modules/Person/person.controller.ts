@@ -36,7 +36,7 @@ const Delete_Person_Controller = Async_Catch(async (req: Request, res: Response,
 })
 
 const Get_All_Person_Controller = Async_Catch(async (req: Request, res: Response, next: NextFunction) => {
-    const result = await Person_Services.Get_All_Person_Service();
+    const result = await Person_Services.Get_All_Person_Service(req.query);
 
     res.status(httpStatus.OK).json({
         success: true,

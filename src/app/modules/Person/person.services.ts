@@ -26,10 +26,48 @@ const Delete_Person_Service = async (pid: string) => {
     return result;
 }
 
-const Get_All_Person_Service = async () => {
+const Get_All_Person_Service = async (query: Record<string, unknown>) => {
+
+    // -----------SELECT------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     select:["name","age"]
+    // });
+
+    // -----------WHERE------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     where:{
+    //         email:query.email
+    //     }
+    // });
+
+    // -----------OR------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     where:[
+    //         {email:query.email},
+    //         {age:query.age}
+    //     ]
+    // });
+
+
+    // -----------ORDER------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     order: {
+    //         person_id: "DESC"
+    //     }, // DESC / ASC
+    // });
 
     const repository = getRepository(Person);
-    const reuslt = await repository.find();
+    const reuslt = await repository.find({
+        order: {
+            person_id: "DESC",
+        },
+        skip: 1,
+        take: 2
+    });
     return reuslt;
 }
 
