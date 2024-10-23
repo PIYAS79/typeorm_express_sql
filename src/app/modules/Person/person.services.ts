@@ -1,6 +1,7 @@
-import { Between, getRepository, In, IsNull, LessThan, LessThanOrEqual, Like, Not, Repository } from "typeorm";
+import { Between, getCustomRepository, getRepository, In, IsNull, LessThan, LessThanOrEqual, Like, Not, Repository } from "typeorm";
 import { Person_Type } from "./person.interface";
 import { Person } from "../../entity/Person";
+import { Person_Static_Method } from "../../methods/person.methods";
 
 
 const Create_Person_Service = async (data: Person_Type) => {
@@ -121,10 +122,14 @@ const Get_All_Person_Service = async (query: Record<string, unknown>) => {
     // })
     // return reuslt;
 
-    // -----------------isNull-----------------//
-    const repository = getRepository(Person);
-    const reuslt = await repository.find()
-    return reuslt;
+    // find duplicate age by own created static method
+    const repository = getCustomRepository(Person_Static_Method);
+    const result = await repository.findByAge(24);
+
+    // ----------------------------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find()
+    return result;
 
 }
 
