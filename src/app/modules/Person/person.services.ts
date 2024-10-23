@@ -1,4 +1,4 @@
-import { getRepository, Repository } from "typeorm";
+import { Between, getRepository, In, IsNull, LessThan, LessThanOrEqual, Like, Not, Repository } from "typeorm";
 import { Person_Type } from "./person.interface";
 import { Person } from "../../entity/Person";
 
@@ -60,15 +60,72 @@ const Get_All_Person_Service = async (query: Record<string, unknown>) => {
     //     }, // DESC / ASC
     // });
 
+    // ----------SKIP,TAKE----------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     order: {
+    //         person_id: "DESC",
+    //     },
+    //     skip: 1,
+    //     take: 2
+    // });
+    // return reuslt;
+
+    // ---------- NOT ------------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     where: {
+    //         name: Not("Piyas")
+    //     }
+    // })
+    // return reuslt;
+
+    //---------------LESS THAN EQUAL--------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     where: {
+    //         person_id: LessThanOrEqual(6),
+
+    //     }
+    // })
+    // return reuslt;
+
+    // // -----------------LIKE-----------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     where: {
+    //         name: Like("%__y__%"),
+
+    //     }
+    // })
+    // return reuslt;
+
+    // // -----------------Between-----------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     where: {
+    //         person_id: Between(0, 4),
+
+    //     }
+    // })
+    // return reuslt;
+
+
+    // -----------------isNull-----------------//
+    // const repository = getRepository(Person);
+    // const reuslt = await repository.find({
+    //     where: {
+    //         name: IsNull(),
+
+    //     }
+    // })
+    // return reuslt;
+
+    // -----------------isNull-----------------//
     const repository = getRepository(Person);
-    const reuslt = await repository.find({
-        order: {
-            person_id: "DESC",
-        },
-        skip: 1,
-        take: 2
-    });
+    const reuslt = await repository.find()
     return reuslt;
+
 }
 
 const Get_One_Person_Service = async (pid: string) => {
