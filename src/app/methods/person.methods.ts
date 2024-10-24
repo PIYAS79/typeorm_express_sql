@@ -10,3 +10,4 @@ export class Person_Static_Method extends AbstractRepository<Person_Type> {
         return this.repository.findOne({ where: { age: age } })
     }
 }
+
